@@ -1,12 +1,11 @@
-# **Owlbox: A DIY RFID Jukebox Guide**
+# **Owlie: A DIY RFID Jukebox Guide**
 
 ## **1. Project Overview**
 
-Welcome to the Owlbox! This is an adorable, 3D-printed speaker designed to be controlled by physical RFID tags. It's a fantastic project for introducing kids to music, stories, and technology in a simple, screen-free, and interactive way.
+Welcome to the Owlie! This is an adorable, 3D-printed speaker designed to be controlled by physical RFID tags. It's a fantastic project for introducing kids to music, stories, and technology in a simple, screen-free, and interactive way.
 
-This enclosure is designed for robustness (toddler-tested!) and flexibility. It can be built using two main platforms:
+This enclosure is designed for robustness (toddler-tested!) and flexibility. It can be built using ::
 
-*   **ESP32 Build:** A cost-effective build using the **Sonocotta LOUDER ESP32** board, integrated with Home Assistant and Music Assistant.
 *   **Raspberry Pi Build:** A powerful build using a **Raspberry Pi (Zero, 4, or 5)**, perfect for running the popular **Phoniebox** project.
 
 **Key Features:**
@@ -24,23 +23,17 @@ This project requires a mix of 3D printed parts and readily available electronic
 
 ### **2.1 3D Printed Parts**
 
-It is highly recommended to use the print profiles provided in the Makerworld project repository. These profiles are pre-configured with optimal settings and support placements.
+It is highly recommended to use the print profiles provided in the [Makerworld project repository](https://makerworld.com/fr/models/1914879-owlbox-rfid-tag-speaker-for-kids-phoniebox#profileId-2053948). These profiles are pre-configured with optimal settings and support placements.
 
 ### **2.2 Electronics & Hardware**
 
 #### **Core Platform (Choose ONE)**
 
-**Option A: ESP32 Build (Recommended for Home Assistant users)**
-
-*   **Microcontroller:** 1x [Sonocotta LOUDER ESP32](https://sonocotta.com/louder/)
-*   **Software:** [RFID Jukebox GitHub Project](https://github.com/XtracT/rfid_jukebox)
-*   **Internal Power Cable:** 1x USB-C to bare wire pigtail (to connect the panel mount to the LOUDER VIN).
-
-**Option B: Raspberry Pi Build**
+**Raspberry Pi Build**
 
 *   **Microcontroller:** 1x Raspberry Pi (Zero, 4, or 5)
 *   **Software:** [Phoniebox Project](https://phoniebox.de/)
-*   **Audio:** 1x DAC/Amplifier HAT for the Pi (e.g., HiFiBerry MiniAmp). Ensure it can drive two 4 Ohm speakers at 5V.
+*   **Audio:** 1x DAC/Amplifier HAT for the Pi (e.g., HiFiBerry MiniAmp or Waveshare WM8960 HAT). Ensure it can drive two 4 Ohm speakers at 5V.
 *   **Internal Power Cable:** 1x USB-C to Micro-USB (for Pi Zero) or USB-C to USB-C (for Pi 4/5).
 
 #### **Common Electronics (Required for BOTH builds)**
@@ -84,7 +77,6 @@ It is highly recommended to use the print profiles provided in the Makerworld pr
 
 Before starting the physical assembly, it is crucial to flash your microcontroller and test the core electronics.
 
-*   **For the ESP32 Build:** Follow the setup guide on the [rfid_jukebox GitHub repository](https://github.com/XtracT/rfid_jukebox).
 *   **For the Raspberry Pi Build:** Follow the official Phoniebox documentation to install the software on your Pi.
 
 ---
@@ -102,7 +94,7 @@ This part is designed to permanently embed the RFID tag and magnet.
 1.  Slice the RFID Tag Base model.
 2.  In your slicer, add a **Pause command** at the layer just before the cavities for the tag and magnet are sealed.
 
-    <img src="print_pause.png" alt="Print Pause Example" width="400"/>
+    <img src="img/print_pause.png" alt="Print Pause Example" width="400"/>
 
 3.  Start the print. When it pauses, carefully place one **30mm RFID tag** and one **12x3mm magnet** into their slots.
 4.  Resume the print to seal the components inside.
@@ -115,7 +107,7 @@ This part is designed to permanently embed the RFID tag and magnet.
 
 1.  **Install Brass Inserts:** Carefully use your soldering iron and a press tip to melt all brass inserts into their corresponding holes on the **Faceplate** and **Back Panel**.
 
-    <img src="faceplate_inserts.png" alt="Faceplate Inserts" width="500"/>
+    <img src="img/faceplate_inserts.png" alt="Faceplate Inserts" width="500"/>
 
 2.  **Solder Pin Headers:** For easier assembly, solder pin headers to the Louder ESP32, PN532, MX switches, and rotary encoder. This allows for flexible connections using jumper wires.
 3.  **Assemble the Faceplate:**
@@ -124,31 +116,31 @@ This part is designed to permanently embed the RFID tag and magnet.
     *   Place the two **2.5-inch Speakers** into the recessed "eye" holes.
     *   Secure the speakers with the **Speaker Brackets** using **8x M3x8mm screws**.
 
-    <img src="faceplate_mount.png" alt="Faceplate Assembled" width="500"/>
+    <img src="img/faceplate_mount.png" alt="Faceplate Assembled" width="500"/>
 
 4.  **Assemble the Back Panel:**
     *   Mount the two **Internal Braces** using **4x M3x8mm screws**.
     *   Mount the **USB-C Panel Mount** using **2x M3x6mm Countersunk screws**.
     *   For Raspberry Pi builds, the mounting will look like this:
 
-    <img src="backplate_rpi_mount_example.png" alt="Raspberry Pi Mount Example" width="500"/>
+    <img src="img/backplate_rpi_mount_example.png" alt="Raspberry Pi Mount Example" width="500"/>
 
 ### **Step 2: Wiring & Connections (ESP32 Build)**
 
 With the components mounted, you can now perform the wiring. It is easier to do this *before* mounting the Louder ESP32 board, as the pin labels are on the back.
 
-<img src="louder_pins_soldering.jpg" alt="Soldering Pins" width="500"/>
+<img src="img/louder_pins_soldering.jpg" alt="Soldering Pins" width="500"/>
 
 1.  **Configure PN532 for SPI:** Set the DIP switches on the PN532 board for SPI communication: `[SWITCH 1: OFF, SWITCH 2: ON]`. It's also a good idea to protect the solder points with electrical tape.
 
-    <img src="pn532_solder_tape_protection.jpg" alt="PN532 Solder Protection" width="300"/>
+    <img src="img/pn532_solder_tape_protection.jpg" alt="PN532 Solder Protection" width="300"/>
 2.  **Connect Components to Louder ESP32:** Refer to the `esphome/jukebox.yaml` file for the exact pinout.
     *   **PN532 RFID Reader:** Connect `Vcc` to `3.3V`, `GND` to `G`, and the SPI pins (MOSI, MISO, SCK, CS) to the W5500 header.
     *   **Rotary Encoder:** Connect `+` to `3.3V` and `GND` to `G`.
     *   **Buttons:** Connect the MX switches to the 3-pin JST sockets.
     *   **Speakers:** Connect the speaker wires to the speaker terminals.
 
-<img src="wiring_all.jpg" alt="All components wired" width="500"/>
+<img src="img/wiring_all.jpg" alt="All components wired" width="500"/>
 
 ### **Step 3: Final Assembly**
 
@@ -160,9 +152,9 @@ With the components mounted, you can now perform the wiring. It is easier to do 
     *   **Position the Magnets:** This can be tricky. Place three 27x9x2.5mm magnets next to each other. To combine their strength, ensure their magnetic fields point in the same direction. Use tape to hold them in place while you glue them.
     *   **Untested Alternative:** A single, strong 30mm diameter x 3mm high N52 magnet may work and would be easier to install.
 
-    <img src="magnets_tape_assembly.jpg" alt="Magnet Tape Assembly" width="300"/>
-    <img src="magnets_body_mount.jpg" alt="Magnet Placement" width="300"/>
-    <img src="pn532_body_mounting.jpg" alt="PN532 Mount" width="300"/>
+    <img src="img/magnets_tape_assembly.jpg" alt="Magnet Tape Assembly" width="300"/>
+    <img src="img/magnets_body_mount.jpg" alt="Magnet Placement" width="300"/>
+    <img src="img/pn532_body_mounting.jpg" alt="PN532 Mount" width="300"/>
 
 
 5.  **Secure the Enclosure:** Align the **Back Panel** with the back of the main enclosure. Insert the **4x M3x100mm screws** from the back and tighten evenly until snug. **Do not overtighten!**
@@ -172,12 +164,12 @@ With the components mounted, you can now perform the wiring. It is easier to do 
 ## **6. Operation**
 
 1.  **Power On:** Connect your USB-C power source.
-2.  **Play Media:** Place an RFID Tag Base—with a figurine glued on top—onto the Owlbox. The magnet will hold it in place.
+2.  **Play Media:** Place an RFID Tag Base—with a figurine glued on top—onto the Owlie. The magnet will hold it in place.
 
-    <img src="owlbox_figurine.png" alt="Owlbox with Figurine" width="400"/>
+    <img src="img/owlbox_figurine.png" alt="Owlie with Figurine" width="400"/>
 
 3.  **Controls:**
     *   **Knob:** Turn to adjust volume. Press to play/pause.
     *   **Buttons:** Previous/Next track.
 
-Enjoy your new Owlbox!
+Enjoy your new Owlie!
