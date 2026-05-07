@@ -67,7 +67,7 @@ wm8960-soundcard, 1.0, 4.19.58-v7l+, armv7l: installed
   ```bash
 pi@raspberrypi:~ $ aplay -l
 **** List of PLAYBACK Hardware Devices ****
-card 0: wm8960soundcard [wm8960-soundcard], device 0: bcm2835-i2s-wm8960-hifi wm8960-hifi-0 []
+card 1: wm8960soundcard [wm8960-soundcard], device 0: bcm2835-i2s-wm8960-hifi wm8960-hifi-0 []
   Subdevices: 1/1
   Subdevice #0: subdevice #0
   ```
@@ -100,7 +100,7 @@ To get the sound card WM8960 correctly working :
 ```bash
 sudo nano /etc/mpd.conf
 ```
-2. Look for the àudio_output`entry that is not commented out. Comment it out et replace it by :
+2. Look for the àudio_output entry that is not commented out. Comment it out et replace it by :
 ```bash
 audio_output {
         type            "alsa"
@@ -108,7 +108,7 @@ audio_output {
         device          "hw:CARD=wm8960soundcard,DEV=0"
         mixer_type      "hardware"
         mixer_device    "hw:CARD=wm8960soundcard"
-        mixer_control   "Playback"
+        mixer_control   "Speaker"
 }
 ```
 3. Check alsa config :
@@ -116,8 +116,13 @@ Run `amixer -c 1 scontrols` (the WM8960 Hi-Fi HAT is card number 1, use `aplay -
 
 4. Might need to run `sudo systemctl enable mpd.service` if you get `An error occorured: Execution failed Command: /home/pi/RPi-Jukebox-RFID/scripts/playout_controls.sh -c=volumeup Output: RC: .1`
 
-5. Adjust iFace name : `nano RPi-Jukebox-RFID/settings/Audio_iFace_Name` and change `PCM` to `Playback`
+5. Adjust iFace name : `nano RPi-Jukebox-RFID/settings/Audio_iFace_Name` and change `PCM` to `Speaker`
 
+6. Use `alsamixer` to adjust sound. Switch card using `F6`. If you want to keep settings between reboot :
+
+``` bash
+sudo alsactl store 1 #1 being the card number
+```
 
 ### Step 5: Setup PN532 RFID reader
 
@@ -178,7 +183,9 @@ It has been tested with the I2C interface. Using SPI might work as well, but it 
   - The service can be activated during installation with the installscript.
   - If the service was not activated during installation, you can alternatively use `sudo install.sh` in `components/gpio_control`.
 2. Configure in the file `~/RPi-Jukebox-RFID/settings/gpio_settings.ini`. Refer to [Phoeniebox documentation](https://github.com/MiczFlor/RPi-Jukebox-RFID/blob/develop/components/gpio_control/README.md#rotaryencoder)
-3. Please note that pins are GPIO numbers
+3. Use `sudo systemctl restart phoniebox-gpio-control` to activate new settings
+
+Please note that pins are GPIO numbers
 
 #### For the Rotary encoder
 
