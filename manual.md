@@ -39,13 +39,13 @@ It is highly recommended to use the print profiles provided in the [Makerworld p
 #### **Common Electronics (Required for BOTH builds)**
 
 *   **Speakers:** 2x **2.5-inch Full-Range Speaker Drivers**.
-    *   *Note: This enclosure is designed for **AIYIMA 2.5-inch drivers** (68x68mm frame). The **4 Ohm** version is highly recommended for a 5V-6V power supply.*
-*   **RFID Reader:** 1x **PN532** Module (SPI interface recommended).
+    *   *Note: This enclosure is designed for **AIYIMA 2.5-inch drivers** (68x68mm frame). The **4 Ohm** version is highly recommended for a 5V-6V power supply.* (Aliexpress: 1005003690882286) 
+*   **RFID Reader:** 1x **PN532** Module (I2C interface recommended for Phoeniebox).
 *   **Rotary Encoder:** 1x **KY-040** Module.
 *   **Buttons:** 2x **MX-style Mechanical Keyboard Switches** (e.g., Cherry, Gateron).
-*   **Panel Connector:** 1x **USB-C Panel Mount**.
+*   **Panel Connector:** 1x **USB-C Panel Mount**  (Aliexpress: 1005009758437594).
 *   **Power Source:** 1x **5V-6V DC Power Adapter (min. 3A)**. A standard 5V 3A USB-C adapter is a great starting point.
-*   **RFID Tags:** **30mm Round RFID Tags** (13.56MHz, e.g., NTAG213/215).
+*   **RFID Tags:** **30mm Round RFID Tags** (13.56MHz, e.g., NTAG213/215) (Aliexpress: 1005008672575582, 32861932088)
 *   **Magnets:**
     *   **For Tag Base:** 5+ **12mm x 3mm Coin Magnets**.
     *   **For Enclosure:** Any strong magnet (e.g., rectangular). This will be glued inside the enclosure.
@@ -59,7 +59,7 @@ It is highly recommended to use the print profiles provided in the [Makerworld p
     *   22x **M3x4mm** (Heat-set)
     *   2x **M2.5x3mm** (Heat-set)
 *   **Screws:**
-    *   4x **M3 x 100mm** (Socket-head)
+    *   4x **M3 x 100mm** (Socket-head) (Aliexpress: 1005005879037174)
     *   12x **M3 x 8mm** (Socket-head)
     *   4x **M3 x 6mm** (Socket-head)
     *   2x **M3 x 6mm (Countersunk)**
@@ -71,15 +71,11 @@ It is highly recommended to use the print profiles provided in the [Makerworld p
     *   Wire Stripper & Cutters
     *   Super glue or hot glue
 
----
-
 ## **3. Software & Firmware Setup**
 
 Before starting the physical assembly, it is crucial to flash your microcontroller and test the core electronics.
 
 *   **For the Raspberry Pi Build:** Follow the official Phoniebox documentation to install the software on your Pi.
-
----
 
 ## **4. 3D Printing Guide**
 
@@ -98,8 +94,6 @@ This part is designed to permanently embed the RFID tag and magnet.
 
 3.  Start the print. When it pauses, carefully place one **30mm RFID tag** and one **12x3mm magnet** into their slots.
 4.  Resume the print to seal the components inside.
-
----
 
 ## **5. Hardware Assembly**
 
@@ -125,27 +119,23 @@ This part is designed to permanently embed the RFID tag and magnet.
 
     <img src="img/backplate_rpi_mount_example.png" alt="Raspberry Pi Mount Example" width="500"/>
 
-### **Step 2: Wiring & Connections (ESP32 Build)**
+### **Step 2: Wiring & Connections**
 
-With the components mounted, you can now perform the wiring. It is easier to do this *before* mounting the Louder ESP32 board, as the pin labels are on the back.
+With the components mounted, you can now perform the wiring. It is easier to do this *before* mounting the board, as the pin labels are on the back.
 
 <img src="img/louder_pins_soldering.jpg" alt="Soldering Pins" width="500"/>
 
-1.  **Configure PN532 for SPI:** Set the DIP switches on the PN532 board for SPI communication: `[SWITCH 1: OFF, SWITCH 2: ON]`. It's also a good idea to protect the solder points with electrical tape.
+1.  **Configure PN532 for I2C:** Set the DIP switches on the PN532 board for I2C communication: `[SWITCH 1: ON, SWITCH 2: OFF]`. It's also a good idea to protect the solder points with electrical tape.
 
     <img src="img/pn532_solder_tape_protection.jpg" alt="PN532 Solder Protection" width="300"/>
-2.  **Connect Components to Louder ESP32:** Refer to the `esphome/jukebox.yaml` file for the exact pinout.
-    *   **PN532 RFID Reader:** Connect `Vcc` to `3.3V`, `GND` to `G`, and the SPI pins (MOSI, MISO, SCK, CS) to the W5500 header.
-    *   **Rotary Encoder:** Connect `+` to `3.3V` and `GND` to `G`.
-    *   **Buttons:** Connect the MX switches to the 3-pin JST sockets.
-    *   **Speakers:** Connect the speaker wires to the speaker terminals.
+2.  **Connect Components to board:** Refer to the `README.md` file for the exact pinout.
 
 <img src="img/wiring_all.jpg" alt="All components wired" width="500"/>
 
 ### **Step 3: Final Assembly**
 
-1.  **Mount the Louder ESP32:** Secure the board to the **Back Panel** using **4x M3x6mm screws**.
-2.  **Connect Power:** Connect the USB-C pigtail from the panel mount to the screw terminals on the Louder ESP32.
+1.  **Mount the board:** Secure the board to the **Back Panel** using **4x M3x6mm screws**.
+2.  **Connect Power:** Connect the USB-C pigtail from the panel mount to the screw terminals on the board
 3.  **Position the Enclosure:** Slide the main enclosure body over the back of the **Faceplate**. The cables should be long enough to allow both the faceplate and back panel to sit on either side.
 4.  **Mount the PN532 & Magnets:**
     *   Secure the **PN532 RFID Reader** to the posts inside the main enclosure. The asymmetrical design ensures it can only be mounted one way.
@@ -159,7 +149,6 @@ With the components mounted, you can now perform the wiring. It is easier to do 
 
 5.  **Secure the Enclosure:** Align the **Back Panel** with the back of the main enclosure. Insert the **4x M3x100mm screws** from the back and tighten evenly until snug. **Do not overtighten!**
 
----
 
 ## **6. Operation**
 
