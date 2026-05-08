@@ -31,12 +31,12 @@ It is highly recommended to use the print profiles provided in the [Makerworld p
 
 **Raspberry Pi Build**
 
-*   **Microcontroller:** 1x Raspberry Pi (Zero, 4, or 5)
+*   **Microcontroller:** 1x Raspberry Pi (Zero 2, 4, or 5)
 *   **Software:** [Phoniebox Project](https://phoniebox.de/)
 *   **Audio:** 1x DAC/Amplifier HAT for the Pi (e.g., HiFiBerry MiniAmp or Waveshare WM8960 HAT). Ensure it can drive two 4 Ohm speakers at 5V.
-*   **Internal Power Cable:** 1x USB-C to Micro-USB (for Pi Zero) or USB-C to USB-C (for Pi 4/5).
+*   **Internal Power Cable:** 1x USB-C to Micro-USB (for Pi Zero) or USB-C to USB-C (for Pi 4/5) (prefer an angled one).
 
-#### **Common Electronics (Required for BOTH builds)**
+#### **Common Electronics**
 
 *   **Speakers:** 2x **2.5-inch Full-Range Speaker Drivers**.
     *   *Note: This enclosure is designed for **AIYIMA 2.5-inch drivers** (68x68mm frame). The **4 Ohm** version is highly recommended for a 5V-6V power supply.* (Aliexpress: 1005003690882286) 
@@ -44,6 +44,7 @@ It is highly recommended to use the print profiles provided in the [Makerworld p
 *   **Rotary Encoder:** 1x **KY-040** Module.
 *   **Buttons:** 2x **MX-style Mechanical Keyboard Switches** (e.g., Cherry, Gateron).
 *   **Panel Connector:** 1x **USB-C Panel Mount**  (Aliexpress: 1005009758437594).
+*   **Panel to board connector**  1x **USB-C to USB-C/Micro-USB angled cable **
 *   **Power Source:** 1x **5V-6V DC Power Adapter (min. 3A)**. A standard 5V 3A USB-C adapter is a great starting point.
 *   **RFID Tags:** **30mm Round RFID Tags** (13.56MHz, e.g., NTAG213/215) (Aliexpress: 1005008672575582, 32861932088)
 *   **Magnets:**

@@ -14,6 +14,13 @@ Owlie is a simple, kid-proof jukebox powered by a **Raspberry Pi 4**, a PN532 RF
 -   **Tactile Controls:** A rotary encoder controls volume, and buttons handle previous/next track.
 -   **Wi-Fi Speaker:** Can also be used as a standard Wi-Fi speaker.
 
+## Acknowledgements
+
+-   [Phoniebox](https://phoniebox.de/index-en.html)
+-   [Owlbox](https://github.com/XtracT/rfid_jukebox)
+
+---
+
 ## Hardware & Assembly
 
 For detailed hardware, assembly, and 3D printing instructions, please see the **[Hardware Manual](manual.md)**.
@@ -27,7 +34,6 @@ The core components are:
 -   Passive speakers + 5V/3A power supply
 -   [3D-printed enclosure](https://makerworld.com/en/models/1914879)
 
----
 
 ## Software Setup Guide
 
@@ -274,11 +280,3 @@ Be careful of overlap with the WM8960 HAT if adding other GPIOs. Here is it's fu
 2. you can add music through the web interface or in `~/RPi-Jukebox-RFID/shared/audiofolders`
 
 ### Step 8 : assemble the hardware [Hardware Manual](manual.md)
-
----
-
-
-## 🙏 Acknowledgements
-
--   [Phoniebox](https://phoniebox.de/index-en.html)
--   [Owlbox](https://github.com/XtracT/rfid_jukebox)
