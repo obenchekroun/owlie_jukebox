@@ -1,4 +1,4 @@
-t 🎵 Owlie: A DIY RFID Jukebox
+🎵 Owlie: A DIY RFID Jukebox
 
 <p align="center">
   <img src="img/owlbox.png" alt="Jukebox" width="320">
