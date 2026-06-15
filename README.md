@@ -64,7 +64,7 @@ sudo chmod +x install.sh
 sudo ./install.sh 
 sudo reboot
 ```
-**NB** If you come across the following errors trying to run `aplay` :
+**NB : ** If you come across the following errors trying to run `aplay` :
 ```bash
 ALSA lib pcm_direct.c:1336:(snd1_pcm_direct_initialize_slave) unable to install hw params
 ALSA lib pcm_dmix.c:1011:(snd_pcm_dmix_open) unable to initialize slave
