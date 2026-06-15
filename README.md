@@ -52,10 +52,9 @@ Note that Phoeniebox is not compatible yet with Trixie, and the Waveshare HAT re
 2. Install the drivers, following [waveshare instructions](https://www.waveshare.com/wiki/WM8960_Audio_HAT?srsltid=AfmBOoqW70ZW3h23JUg6jWNIV9WuVtEOpoivRx90iPtG8A7PR_MYpmdh) :
   - Install the prerequisites
 ``` bash
-sudo apt -y update
-sudo apt -y upgrade
 sudo apt install git
 ```
+**NB :** do not `sudo apt upgrade`, otherwise you will update the kernel and the standard WM8960 drivers won't work. In that case, rely on the drivers here : [ubopod instructions](https://github.com/ubopod/WM8960-Audio-HAT/tree/master)
   - Install the drivers
 ``` bash
 git clone https://github.com/waveshare/WM8960-Audio-HAT
@@ -70,6 +69,7 @@ ALSA lib pcm_direct.c:1336:(snd1_pcm_direct_initialize_slave) unable to install 
 ALSA lib pcm_dmix.c:1011:(snd_pcm_dmix_open) unable to initialize slave
 ```
 try this branch [ubopod instructions](https://github.com/ubopod/WM8960-Audio-HAT/tree/master)
+
   - Check if the driver is installed
   ```bash
 pi@raspberrypi:~ $ sudo dkms status 
@@ -269,16 +269,17 @@ functionCall: functionCallPlayerPrev
 Be careful of overlap with the WM8960 HAT if adding other GPIOs. Here is it's full pinout
 
 
-|Functional Pins	|Raspberry Pi Pins (BCM)|	Description|
-|5V|	5V|	Power positive (5V power input)|
-|GND|	GND|	Power Ground|
-|SDA|	P2/SDA|	I2C data input|
-|SCL|	P3/SCL| I2C clock Input|
-|CLK|	P18|	I2S bit clock input|
-|LRCLK|	P19|	I2S frame clock input|
-|DAC|	P21|	I2S serial data output|
-|ADC|	P20|	I2S serial data input|
-|BUTTON|P17|	Custom buttons|
+| Functional Pins | Raspberry Pi Pins (BCM) | Description                     |
+|-----------------|-------------------------|---------------------------------|
+| 5V              | 5V                      | Power positive (5V power input) |
+| GND             | GND                     | Power Ground                    |
+| SDA             | P2/SDA                  | I2C data input                  |
+| SCL             | P3/SCL                  | I2C clock Input                 |
+| CLK             | P18                     | I2S bit clock input             |
+| LRCLK           | P19                     | I2S frame clock input           |
+| DAC             | P21                     | I2S serial data output          |
+| ADC             | P20                     | I2S serial data input           |
+| BUTTON          | P17                     | Custom buttons                  |
 
 
 ### Step 7: configure RFID chips, playlists, music through web-interface
