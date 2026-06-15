@@ -133,7 +133,8 @@ Run `amixer -c 1 scontrols` (the WM8960 Hi-Fi HAT is card number 1, use `aplay -
 6. Use `alsamixer` to adjust sound. Switch card using `F6`. If you want to keep settings between reboot :
 
 ``` bash
-sudo alsactl store 1 #1 being the card number
+# sudo alsactl store 1 #1 being the card number
+sudo alsactl --file=/etc/wm8960-soundcard/wm8960_asound.state  store
 ```
 
 ### Step 5: Setup PN532 RFID reader
